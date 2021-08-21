@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import List from './components/List';
 import TopCounter from './components/TopCounter';
+import Reset from './components/Reset';
 
 //List of items
 class App extends React.Component {
@@ -60,11 +61,26 @@ class App extends React.Component {
         this.setState({ list: [...this.state.list.filter(list => list.id !== id)] });
     }
 
+    //Rest Amount
+    resetAmount = () => {
+        const list = this.state.list.map(a => {
+            a.amount = 0;
+            return a;
+        });
+        this.setState({ list });
+    }
+
+    //Reset the List
+    restartList = () => {
+        window.location.reload();
+    }
+
 
     render() {
         return (
             <div className="App">
                 <TopCounter />
+                <Reset resetAmount={this.resetAmount} restartList={this.restartList} />
                 <List list={this.state.list} incrimentAmount={this.incrimentAmount} decrementAmount={this.decrementAmount}
                     delItem={this.delItem}
                 />
