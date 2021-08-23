@@ -4,6 +4,10 @@ import List from './components/List';
 import TopCounter from './components/TopCounter';
 import Reset from './components/Reset';
 
+import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.css";
+
+
 //List of items
 class App extends React.Component {
     state = {
@@ -11,22 +15,18 @@ class App extends React.Component {
             {
                 id: 1,
                 amount: 0,
-                deleted: false
             },
             {
                 id: 2,
                 amount: 0,
-                deleted: false
             },
             {
                 id: 3,
                 amount: 0,
-                deleted: false
             },
             {
                 id: 4,
                 amount: 0,
-                deleted: false
             },
         ]
     }
@@ -73,16 +73,19 @@ class App extends React.Component {
     //Reset the List
     restartList = () => {
         window.location.reload();
-    }
+    } 
+
+
+
 
 
     render() {
         return (
             <div className="App">
-                <TopCounter />
-                <Reset resetAmount={this.resetAmount} restartList={this.restartList} />
+                <TopCounter list={ this.state.list }/>
+                <Reset list={ this.state.list }  resetAmount={this.resetAmount} restartList={this.restartList} />
                 <List list={this.state.list} incrimentAmount={this.incrimentAmount} decrementAmount={this.decrementAmount}
-                    delItem={this.delItem}
+                    delItem={this.delItem} formatZero={this.formatZero} getBadgeClass={this.getBadgeClass}
                 />
             </div>
         );
